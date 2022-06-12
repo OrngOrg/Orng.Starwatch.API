@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Objects\" />
+    <Folder Include="Routes\" />
+  </ItemGroup>
+
 </Project>
