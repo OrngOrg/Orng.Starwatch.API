@@ -21,7 +21,7 @@ THE SOFTWARE.
 
 -- Starwatch License
 Starwatch is a Starbound Server manager with player management, crash recovery and a REST and websocket (live) API. 
-Copyright(C) 2020 Lachee
+Copyright(C) 2020-2022 Lachee
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published

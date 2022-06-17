@@ -7,6 +7,6 @@ public partial class ApiClient
         public const string RouteBase = "api/version";
     }
 
-    public ConversionResult<RestResponse<string>> GetVersion ()
-    =>  GetRestResponseSync<RestResponse<string>> (VersionRoute.RouteBase);
+    public ConversionResult<RestResponse<string?>> GetVersion ()
+    =>  GetRestResponseSync<RestResponse<string?>> (VersionRoute.RouteBase);
 }

@@ -1,4 +1,6 @@
-﻿namespace Orng.Starwatch.API.Objects;
+﻿// See LICENSE.txt - Starwatch
+
+namespace Orng.Starwatch.API.Objects;
 
 public class Account
 {

@@ -1,13 +1,14 @@
-﻿namespace Orng.Starwatch.API;
+﻿using Orng.Starwatch.API.Objects;
+
+namespace Orng.Starwatch.API;
 
 public partial class ApiClient
 {
-    /*
-    public static class VersionRoute
+    public static class MetaGatewayRoute
     {
-        public const string RouteBase = "api/version";
+        public const string RoutePath = "api/meta/gateway";
     }
 
-    public ConversionResult<RestResponse<string>> GetVersion()
-    => GetRestResponseSync<RestResponse<string>>(VersionRoute.RouteBase);*/
+    public ConversionResult<RestResponse<GatewayListing?>> GetGateway()
+    =>  GetRestResponseSync<RestResponse<GatewayListing?>> (MetaGatewayRoute.RoutePath);
 }

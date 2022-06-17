@@ -1,13 +1,15 @@
-﻿namespace Orng.Starwatch.API;
+﻿using Newtonsoft.Json;
+using Orng.Starwatch.API.Objects;
+
+namespace Orng.Starwatch.API;
 
 public partial class ApiClient
 {
-    /*
-    public static class VersionRoute
+    public static class BanRoute
     {
-        public const string RouteBase = "api/version";
+        public const string RoutePath = "api/ban";
     }
 
-    public ConversionResult<RestResponse<string>> GetVersion()
-    => GetRestResponseSync<RestResponse<string>>(VersionRoute.RouteBase);*/
+    public ConversionResult<RestResponse<Ban?>> PostBan (Ban ban)
+    => PostRestResponseSync<RestResponse<Ban?>> (BanRoute.RoutePath, JsonConvert.SerializeObject(ban));
 }

@@ -1,13 +1,17 @@
-﻿namespace Orng.Starwatch.API;
+﻿using Orng.Starwatch.API.Objects;
+
+namespace Orng.Starwatch.API;
 
 public partial class ApiClient
 {
-    /*
-    public static class VersionRoute
+    public static class MapSystemRoute
     {
-        public const string RouteBase = "api/version";
+        public const string RoutePath = "api/map/{0}";
+
+        public static string GetRoutePath (string system)
+        => string.Format(RoutePath, system);
     }
 
-    public ConversionResult<RestResponse<string>> GetVersion()
-    => GetRestResponseSync<RestResponse<string>>(VersionRoute.RouteBase);*/
+    public ConversionResult<RestResponse<List<CelestialWorld>?>> GetMapSystem (string system)
+    =>  GetRestResponseSync<RestResponse<List<CelestialWorld>?>> (MapSystemRoute.GetRoutePath(system));
 }

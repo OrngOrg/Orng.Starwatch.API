@@ -2,12 +2,14 @@
 
 public partial class ApiClient
 {
-    /*
-    public static class VersionRoute
+    public static class MetaAuthenticationRoute
     {
-        public const string RouteBase = "api/version";
+        public const string RoutePath = "api/meta/authentication";
     }
 
-    public ConversionResult<RestResponse<string>> GetVersion()
-    => GetRestResponseSync<RestResponse<string>>(VersionRoute.RouteBase);*/
+    public ConversionResult<RestResponse<string[]?>> GetAuthentications ()
+    =>  GetRestResponseSync<RestResponse<string[]?>> (MetaAuthenticationRoute.RoutePath);
+
+    public ConversionResult<RestResponse<object?>> DelAuthentications ()
+    =>  DelRestResponseSync<RestResponse<object?>> (MetaAuthenticationRoute.RoutePath);
 }

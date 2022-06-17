@@ -1,13 +1,17 @@
-﻿namespace Orng.Starwatch.API;
+﻿using Orng.Starwatch.API.Objects;
+
+namespace Orng.Starwatch.API;
 
 public partial class ApiClient
 {
-    /*
-    public static class VersionRoute
+    public static class BanListRoute
     {
-        public const string RouteBase = "api/version";
+        public const string RoutePath = "api/ban/list";
+
+        public static string GetRoutePath(int page = 0, int limit = 10)
+        => $"{RoutePath}?page={page}&limit={limit}";
     }
 
-    public ConversionResult<RestResponse<string>> GetVersion()
-    => GetRestResponseSync<RestResponse<string>>(VersionRoute.RouteBase);*/
+    public ConversionResult<RestResponse<Ban[]?>> GetBans (int page = 0, int limit = 10)
+    =>  GetRestResponseSync<RestResponse<Ban[]?>> (BanListRoute.GetRoutePath(page, limit));
 }

@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿// See LICENSE.txt - Starwatch
+
+using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
 namespace Orng.Starwatch.API.Objects;
