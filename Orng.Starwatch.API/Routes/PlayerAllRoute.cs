@@ -1,13 +1,14 @@
-﻿namespace Orng.Starwatch.API;
+﻿using Orng.Starwatch.API.Objects;
+
+namespace Orng.Starwatch.API;
 
 public partial class ApiClient
 {
-    /*
-    public static class VersionRoute
+    public static class PlayerAllRoute
     {
-        public const string RouteBase = "api/version";
+        public const string RoutePath = "api/player/all";
     }
 
-    public ConversionResult<RestResponse<string>> GetVersion()
-    => GetRestResponseSync<RestResponse<string>>(VersionRoute.RouteBase);*/
+    public ConversionResult<RestResponse<Player[]>> GetAllPlayers()
+    =>  GetRestResponseSync<RestResponse<Player[]>> (PlayerAllRoute.RoutePath);
 }

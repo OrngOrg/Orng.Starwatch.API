@@ -2,12 +2,8 @@
 
 public partial class ApiClient
 {
-    /*
-    public static class VersionRoute
+    public static class ServerListingRoute
     {
-        public const string RouteBase = "api/version";
+        public const string RoutePath = "api/server/statistics/listing";
     }
-
-    public ConversionResult<RestResponse<string>> GetVersion()
-    => GetRestResponseSync<RestResponse<string>>(VersionRoute.RouteBase);*/
 }

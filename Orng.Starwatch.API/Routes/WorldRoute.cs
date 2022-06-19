@@ -10,4 +10,12 @@ public partial class ApiClient
 
     public ConversionResult<RestResponse<string>> GetVersion()
     => GetRestResponseSync<RestResponse<string>>(VersionRoute.RouteBase);*/
+
+    public static class WorldRoute
+    {
+        public const string RoutePath = "api/world";
+    }
+
+    public ConversionResult<RestResponse<string[]>> GetActiveWorlds()
+    =>  GetRestResponseSync<RestResponse<string[]>> (WorldRoute.RoutePath);
 }

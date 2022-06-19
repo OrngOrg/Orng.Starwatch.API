@@ -70,11 +70,46 @@ public partial class ApiClient
         }
     }
 
+    private bool DownloadStreamSync (string path, string output, int bufferSize)
+    {
+        var resp = CallClient((c) => c.GetAsync($"{BaseUrl}/{path}").Result);
+
+        if (resp is null)
+            return false;
+
+        try
+        {
+            Stream s = resp.Content.ReadAsStream();
+            FileStream fs = File.OpenWrite(output);
+            byte[] buffer = new byte[bufferSize];
+            int bytesRead = s.Read(buffer, 0, buffer.Length);
+            
+            while (bytesRead > 0)
+            {
+                fs.Write(buffer, 0, bytesRead);
+                bytesRead = s.Read(buffer, 0, buffer.Length);
+            }
+
+            fs.Close();
+            s.Close();
+
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
     private HttpResponseMessage? DelSync(string path)
     => CallClient((c) => c.DeleteAsync($"{BaseUrl}/{path}").Result);
 
-    private HttpResponseMessage? PostSync(string path, string body)
-    => CallClient((c) => c.PostAsync($"{BaseUrl}/{path}", new StringContent(body, Encoding.UTF8, "application/json")).Result);
+    private HttpResponseMessage? PostSync(string path, string? body = null)
+    {
+        return body is not null
+            ? CallClient((c) => c.PostAsync($"{BaseUrl}/{path}", new StringContent(body, Encoding.UTF8, "application/json")).Result)
+            : CallClient((c) => c.PostAsync($"{BaseUrl}/{path}", null).Result);
+    }
 
     private HttpResponseMessage? PatchSync(string path, string body)
     => CallClient((c) => c.PatchAsync($"{BaseUrl}/{path}", new StringContent(body, Encoding.UTF8, "application/json")).Result);
@@ -125,7 +160,7 @@ public partial class ApiClient
     private ConversionResult<T> DelRestResponseSync<T>(string path)
     => ConvertResponse<T>(DelSync(path));
 
-    private ConversionResult<T> PostRestResponseSync<T>(string path, string body)
+    private ConversionResult<T> PostRestResponseSync<T>(string path, string? body = null)
     => ConvertResponse<T>(PostSync(path, body));
 
     // starwatch seems to error when this is used for an actual patch request.
