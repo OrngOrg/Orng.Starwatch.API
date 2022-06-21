@@ -1,4 +1,6 @@
-﻿namespace Orng.Starwatch.API;
+﻿// See LICENSE.txt - Starwatch
+
+namespace Orng.Starwatch.API;
 
 public class RestResponse<T>
 {
