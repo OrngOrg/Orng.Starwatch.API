@@ -8,11 +8,11 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Authors>MiniOranges011</Authors>
     <PackageProjectUrl>https://github.com/OrngOrg/Orng.Starwatch.API</PackageProjectUrl>
-    <AssemblyVersion>0.3.0</AssemblyVersion>
-    <FileVersion>0.3.0</FileVersion>
+    <AssemblyVersion>0.3.1</AssemblyVersion>
+    <FileVersion>0.3.1</FileVersion>
     <RepositoryUrl>https://github.com/OrngOrg/Orng.Starwatch.API</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Version>0.3.0</Version>
+    <Version>0.3.1</Version>
 	<PackageLicenseExpression>MIT</PackageLicenseExpression>
 	<Description>Starwatch API Interface for .NET 6.0</Description>
 	<Company>MiniOranges011</Company>
