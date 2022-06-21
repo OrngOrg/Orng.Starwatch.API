@@ -1,6 +1,5 @@
 ﻿using System.Net;
 using System.Text;
-using System.Web;
 using Newtonsoft.Json;
 
 namespace Orng.Starwatch.API;
@@ -52,26 +51,11 @@ public partial class ApiClient
     private HttpResponseMessage? GetSync (string path)
     => CallClient((c) => c.GetAsync($"{BaseUrl}/{path}").Result);
 
-    private string? GetStringSync (string path)
+    private bool DownloadStreamSync (string path, string output, byte[] buffer)
     {
-        var resp = CallClient((c) => c.GetAsync($"{BaseUrl}/{path}").Result);
+        if (File.Exists(output))
+            File.Delete(output);
 
-        if (resp is null)
-            return null;
-
-        try
-        {
-            string r = resp.Content.ReadAsStringAsync().Result;
-            return r;
-        }
-        catch
-        {
-            return null;
-        }
-    }
-
-    private bool DownloadStreamSync (string path, string output, int bufferSize)
-    {
         var resp = CallClient((c) => c.GetAsync($"{BaseUrl}/{path}").Result);
 
         if (resp is null)
@@ -81,7 +65,6 @@ public partial class ApiClient
         {
             Stream s = resp.Content.ReadAsStream();
             FileStream fs = File.OpenWrite(output);
-            byte[] buffer = new byte[bufferSize];
             int bytesRead = s.Read(buffer, 0, buffer.Length);
             
             while (bytesRead > 0)

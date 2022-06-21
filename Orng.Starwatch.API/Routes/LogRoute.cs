@@ -7,6 +7,6 @@ public partial class ApiClient
         public const string RoutePath = "log/{0}";
     }
 
-    public bool DownloadLog(string path, int bufferSize, int num = 0)
-    => DownloadStreamSync(string.Format(LogRoute.RoutePath, num), path, bufferSize);
+    public bool DownloadLog(string path, byte[] buffer, int num = 0)
+    => DownloadStreamSync(string.Format(LogRoute.RoutePath, num), path, buffer);
 }
