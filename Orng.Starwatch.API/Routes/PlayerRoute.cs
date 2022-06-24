@@ -52,6 +52,6 @@ public partial class ApiClient
         }
     }
 
-    public ConversionResult<RestResponse<Dictionary<int, string>>> GetPlayers(Player query)
-    =>  GetRestResponseSync<RestResponse<Dictionary<int, string>>> (PlayerRoute.GetRoutePath(query));
+    public ConversionResult<RestResponse<Dictionary<int, string>?>> GetPlayersByQuery (Player query)
+    =>  GetRestResponseSync<RestResponse<Dictionary<int, string>?>> (PlayerRoute.GetRoutePath(query));
 }

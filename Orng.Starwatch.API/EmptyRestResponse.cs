@@ -3,13 +3,11 @@
 namespace Orng.Starwatch.API;
 
 /// <summary>
-/// RestResponse from Starwatch
+/// RestResponse from Starwatch with no Response parameter expected.
 /// </summary>
-public class RestResponse<T>
+public class EmptyRestResponse
 {
     public RestStatus? Status { get; set; } = null;
 
     public string? Message { get; set; } = null;
-
-    public T? Response { get; set; } = default;
 }

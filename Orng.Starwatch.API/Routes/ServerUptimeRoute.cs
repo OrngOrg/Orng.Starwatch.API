@@ -9,6 +9,6 @@ public partial class ApiClient
         public const string RoutePath = "api/server/uptime";
     }
 
-    public ConversionResult<RestResponse<List<Uptime>>> GetServerUptime()
-    =>  GetRestResponseSync<RestResponse<List<Uptime>>> (ServerUptimeRoute.RoutePath);
+    public ConversionResult<RestResponse<List<Uptime>?>> GetServerUptime()
+    =>  GetRestResponseSync<RestResponse<List<Uptime>?>> (ServerUptimeRoute.RoutePath);
 }

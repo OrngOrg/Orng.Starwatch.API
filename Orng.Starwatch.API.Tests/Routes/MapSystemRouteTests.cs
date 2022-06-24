@@ -1,10 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json;
+using Orng.Starwatch.API.Objects;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Orng.Starwatch.API.Tests.Routes;
-internal class MapSystemRouteTests
+
+[TestClass]
+public class MapSystemRouteTests
 {
+    [TestMethod]
+    public void GetMapSystemTest()
+    {
+        var cli = RouteTestConfig.GetBotUserApiClient();
+        Assert.Inconclusive();
+    }
 }

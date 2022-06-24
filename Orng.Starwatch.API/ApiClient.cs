@@ -4,17 +4,27 @@ using Newtonsoft.Json;
 
 namespace Orng.Starwatch.API;
 
+/// <summary>
+/// Starwatch API Client
+/// </summary>
 public partial class ApiClient
 {
     private readonly ICredentials credentials;
+    private readonly string baseUrl;
 
-    public string BaseUrl { get; set; } = string.Empty;
-    public bool EnableVerboseDebug { get; set; } = false;
-    public int TimeoutSeconds { get; set; } = 10;
+    /// <summary>
+    /// Outputs debug statements through Console.WriteLine.
+    /// </summary>
+    public bool enableVerboseDebug = false;
+
+    /// <summary>
+    /// Connection timeout in seconds.
+    /// </summary>
+    public int timeoutSeconds = 10;
 
     public ApiClient(string baseUrl, string username, string password)
     {
-        BaseUrl = baseUrl;
+        this.baseUrl = baseUrl;
         credentials = new NetworkCredential(username, password);
     }
 
@@ -26,13 +36,11 @@ public partial class ApiClient
             {
                 using (var client = new HttpClient(handler))
                 {
-                    client.Timeout = new TimeSpan(0, 0, TimeoutSeconds);
+                    client.Timeout = new TimeSpan(0, 0, timeoutSeconds);
                     var res = func(client);
 
-                    if (EnableVerboseDebug)
-                    {
+                    if (enableVerboseDebug)
                         Console.WriteLine(JsonConvert.SerializeObject(res));
-                    }
 
                     return res;
                 }
@@ -40,23 +48,27 @@ public partial class ApiClient
         }
         catch (Exception ex)
         {
-            if (EnableVerboseDebug)
-            {
+            if (enableVerboseDebug)
                 Console.WriteLine(ex.ToString());
-            }
+            
             return null;
         }
     }
 
     private HttpResponseMessage? GetSync (string path)
-    => CallClient((c) => c.GetAsync($"{BaseUrl}/{path}").Result);
+    => CallClient((c) => c.GetAsync($"{baseUrl}/{path}").Result);
 
+    /// <summary>
+    /// Downloads a <paramref name="path"/> to a 
+    /// file at <paramref name="output"/>, 
+    /// using <paramref name="buffer"/> to move data from the HttpResponseMessage.
+    /// </summary>
     private bool DownloadStreamSync (string path, string output, byte[] buffer)
     {
         if (File.Exists(output))
             File.Delete(output);
 
-        var resp = CallClient((c) => c.GetAsync($"{BaseUrl}/{path}").Result);
+        var resp = CallClient((c) => c.GetAsync($"{baseUrl}/{path}").Result);
 
         if (resp is null)
             return false;
@@ -78,43 +90,32 @@ public partial class ApiClient
 
             return true;
         }
-        catch
+        catch (Exception ex)
         {
+            if (enableVerboseDebug)
+                Console.WriteLine($"Exception with DownloadStreamSync: {ex}");
+
             return false;
         }
     }
 
     private HttpResponseMessage? DelSync(string path)
-    => CallClient((c) => c.DeleteAsync($"{BaseUrl}/{path}").Result);
+    => CallClient((c) => c.DeleteAsync($"{baseUrl}/{path}").Result);
 
     private HttpResponseMessage? PostSync(string path, string? body = null)
     {
         return body is not null
-            ? CallClient((c) => c.PostAsync($"{BaseUrl}/{path}", new StringContent(body, Encoding.UTF8, "application/json")).Result)
-            : CallClient((c) => c.PostAsync($"{BaseUrl}/{path}", null).Result);
+            ? CallClient((c) => c.PostAsync($"{baseUrl}/{path}", new StringContent(body, Encoding.UTF8, "application/json")).Result)
+            : CallClient((c) => c.PostAsync($"{baseUrl}/{path}", null).Result);
     }
 
     private HttpResponseMessage? PatchSync(string path, string body)
-    => CallClient((c) => c.PatchAsync($"{BaseUrl}/{path}", new StringContent(body, Encoding.UTF8, "application/json")).Result);
+    => CallClient((c) => c.PatchAsync($"{baseUrl}/{path}", new StringContent(body, Encoding.UTF8, "application/json")).Result);
 
     private HttpResponseMessage? PutSync(string path, string body)
-    => CallClient((c) => c.PutAsync($"{BaseUrl}/{path}", new StringContent(body, Encoding.UTF8, "application/json")).Result);
+    => CallClient((c) => c.PutAsync($"{baseUrl}/{path}", new StringContent(body, Encoding.UTF8, "application/json")).Result);
 
-    public class ConversionResult<T>
-    {
-        public bool Success { get; set; } = false;
-        public T? Result { get; set; } = default;
-        public Exception? Exception { get; set; } = null;
-        public string Raw { get; set; } = string.Empty;
-
-        public ConversionResult (bool success = false, T? result = default, string raw = "", Exception? exception = null)
-        {
-            Success = success;
-            Result = result;
-            Raw = raw;
-            Exception = exception;
-        }
-    }
+    
 
     private ConversionResult<T> ConvertResponse<T>(HttpResponseMessage? resp, Action<Exception>? failCallback = null)
     {

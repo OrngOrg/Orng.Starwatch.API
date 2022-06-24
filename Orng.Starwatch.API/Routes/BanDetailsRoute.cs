@@ -12,6 +12,6 @@ public partial class ApiClient
     public ConversionResult<RestResponse<Ban?>> GetBan (long? id)
     =>  GetRestResponseSync<RestResponse<Ban?>> (string.Format(BanDetailsRoute.RoutePath, id));
 
-    public ConversionResult<RestResponse<bool?>> DelBan (long? id)
+    public ConversionResult<RestResponse<bool?>> DeleteBan (long? id)
     =>  DelRestResponseSync<RestResponse<bool?>> (string.Format(BanDetailsRoute.RoutePath, id));
 }

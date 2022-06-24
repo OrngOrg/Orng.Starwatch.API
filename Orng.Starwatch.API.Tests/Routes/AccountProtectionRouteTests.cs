@@ -15,8 +15,8 @@ public class AccountProtectionRouteTests
 
         // cleanup
         cli.DeleteWorldWhitelist("CelestialWorld:1:1:1:1:1");
-        cli.DelAccountDetails("test_user");
-        cli.PostAccount(new Account { IsActive = true, IsAdmin = false, Name = "test_user", Password = "test_pass" });
+        cli.DeleteAccount("test_user");
+        cli.AddAccount(new Account { IsActive = true, IsAdmin = false, Name = "test_user", Password = "test_pass" });
 
         cli.AddWorldWhitelist("CelestialWorld:1:1:1:1:1", new OptionalProtectedWorld
         {
@@ -29,7 +29,7 @@ public class AccountProtectionRouteTests
 
         cli.AddAccountWhitelistOnWorld("CelestialWorld:1:1:1:1:1", "test_user");
 
-        var res = cli.GetAccountProtections("test_user");
+        var res = cli.GetAccountWorldWhitelists("test_user");
         var resStr = JsonConvert.SerializeObject(res);
         Assert.IsTrue(res.Success, resStr);
         Assert.IsTrue(res.Result.Response.Where(x => x.Name == "Test world").Any(), resStr);

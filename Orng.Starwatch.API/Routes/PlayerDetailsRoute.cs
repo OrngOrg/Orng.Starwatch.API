@@ -15,6 +15,6 @@ public partial class ApiClient
     public ConversionResult<RestResponse<Player?>> GetPlayerDetails (int cid)
     =>  GetRestResponseSync<RestResponse<Player?>> (PlayerDetailsRoute.GetRoutePath(cid));
 
-    public ConversionResult<RestResponse<RconResponse>> KickPlayerByCid (int cid)
-    =>  DelRestResponseSync<RestResponse<RconResponse>> (PlayerDetailsRoute.GetRoutePath(cid));
+    public ConversionResult<RestResponse<RconResponse?>> KickPlayerByCid (int cid)
+    =>  DelRestResponseSync<RestResponse<RconResponse?>> (PlayerDetailsRoute.GetRoutePath(cid));
 }

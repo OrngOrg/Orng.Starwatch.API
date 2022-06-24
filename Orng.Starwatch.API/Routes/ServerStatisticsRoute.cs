@@ -9,6 +9,6 @@ public partial class ApiClient
         public const string RoutePath = "api/server/statistics";
     }
 
-    public ConversionResult<RestResponse<Statistics>> GetStatistics()
-    =>  GetRestResponseSync<RestResponse<Statistics>> (ServerStatisticsRoute.RoutePath);
+    public ConversionResult<RestResponse<Statistics?>> GetServerStatistics()
+    =>  GetRestResponseSync<RestResponse<Statistics?>> (ServerStatisticsRoute.RoutePath);
 }

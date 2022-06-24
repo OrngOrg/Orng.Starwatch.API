@@ -10,6 +10,6 @@ public partial class ApiClient
         public const string RoutePath = "api/account";
     }
 
-    public ConversionResult<RestResponse<Account?>> PostAccount (Account account)
+    public ConversionResult<RestResponse<Account?>> AddAccount (Account account)
     => PostRestResponseSync<RestResponse<Account?>> (AccountRoute.RoutePath, JsonConvert.SerializeObject(account));
 }

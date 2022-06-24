@@ -2,6 +2,9 @@
 
 namespace Orng.Starwatch.API;
 
+/// <summary>
+/// RestStatus from Starwatch
+/// </summary>
 public enum RestStatus
 {
     /// <summary>

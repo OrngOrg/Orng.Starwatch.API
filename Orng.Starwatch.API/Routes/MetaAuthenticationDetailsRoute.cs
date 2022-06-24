@@ -12,6 +12,6 @@ public partial class ApiClient
         => string.Format(RoutePath, accountName);
     }
 
-    public ConversionResult<RestResponse<MetaAuthenticationDetailsResponse?>> GetMetaAuthenticationDetails (string accountName = "@me")
+    public ConversionResult<RestResponse<MetaAuthenticationDetailsResponse?>> GetStarwatchSessionDetails (string accountName = "@me")
     =>  GetRestResponseSync<RestResponse<MetaAuthenticationDetailsResponse?>> (MetaAuthenticationDetailsRoute.GetRoutePath(accountName));
 }

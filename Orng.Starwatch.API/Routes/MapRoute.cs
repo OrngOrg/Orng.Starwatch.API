@@ -41,6 +41,6 @@ public partial class ApiClient
         }
     }
 
-    public ConversionResult<RestResponse<HashSet<SystemWorld>?>> GetMap (long? xmin = null, long? xmax = null, long? ymin = null, long? ymax = null)
-    =>  GetRestResponseSync<RestResponse<HashSet<SystemWorld>?>> (MapRoute.GetRoutePath(xmin, xmax, ymin, ymax));
+    public ConversionResult<RestResponse<List<SystemWorld>?>> GetMap (long? xmin = null, long? xmax = null, long? ymin = null, long? ymax = null)
+    =>  GetRestResponseSync<RestResponse<List<SystemWorld>?>> (MapRoute.GetRoutePath(xmin, xmax, ymin, ymax));
 }

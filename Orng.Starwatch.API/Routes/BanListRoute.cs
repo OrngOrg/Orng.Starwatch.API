@@ -12,6 +12,6 @@ public partial class ApiClient
         => $"{RoutePath}?page={page}&limit={limit}";
     }
 
-    public ConversionResult<RestResponse<Ban[]?>> GetBans (int page = 0, int limit = 10)
-    =>  GetRestResponseSync<RestResponse<Ban[]?>> (BanListRoute.GetRoutePath(page, limit));
+    public ConversionResult<RestResponse<List<Ban>?>> GetBans (int page = 0, int limit = 10)
+    =>  GetRestResponseSync<RestResponse<List<Ban>?>> (BanListRoute.GetRoutePath(page, limit));
 }

@@ -9,6 +9,6 @@ public partial class ApiClient
         public const string RoutePath = "api/account/{0}/protection";
     }
 
-    public ConversionResult<RestResponse<IEnumerable<OptionalProtectedWorld>?>> GetAccountProtections (string username)
-    =>  GetRestResponseSync<RestResponse<IEnumerable<OptionalProtectedWorld>?>> (string.Format(AccountProtectionRoute.RoutePath, username));
+    public ConversionResult<RestResponse<List<OptionalProtectedWorld>?>> GetAccountWorldWhitelists (string username)
+    =>  GetRestResponseSync<RestResponse<List<OptionalProtectedWorld>?>> (string.Format(AccountProtectionRoute.RoutePath, username));
 }
