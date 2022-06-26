@@ -9,6 +9,6 @@ public partial class ApiClient
         public const string RoutePath = "api/player/all";
     }
 
-    public ConversionResult<RestResponse<Player[]>> GetAllPlayers()
-    =>  GetRestResponseSync<RestResponse<Player[]>> (PlayerAllRoute.RoutePath);
+    public ConversionResult<RestResponse<List<Player>?>> GetAllPlayers()
+    =>  GetRest<RestResponse<List<Player>?>> (PlayerAllRoute.RoutePath);
 }

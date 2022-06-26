@@ -36,7 +36,7 @@ public class AnnouncementRouteTests
     public void PostAnnouncementTest()
     {
         var cli = RouteTestConfig.GetBotUserApiClient();
-        var res = cli.PostAnnouncement(new Announcement
+        var res = cli.AddAnnouncement(new Announcement
         {
             Enabled = true,
             Interval = 1000d,
@@ -51,7 +51,7 @@ public class AnnouncementRouteTests
         Assert.IsTrue(res.Success);
 
         var res2 = cli.GetAnnouncements();
-        cli.DelAnnouncement(res2.Result.Response.Length - 1);
+        cli.DeleteAnnouncement(res2.Result.Response.Length - 1);
     }
 
     [TestMethod]
@@ -61,7 +61,7 @@ public class AnnouncementRouteTests
     public void PatchAnnouncementTest()
     {
         var cli = RouteTestConfig.GetBotUserApiClient();
-        var res = cli.PostAnnouncement(new Announcement
+        var res = cli.AddAnnouncement(new Announcement
         {
             Enabled = true,
             Interval = 1000d,
@@ -76,7 +76,7 @@ public class AnnouncementRouteTests
         Assert.IsTrue(res.Success);
 
         var res2 = cli.GetAnnouncements();
-        cli.PatchAnnouncement(new Announcement
+        cli.UpdateAnnouncement(new Announcement
         {
             Id = res2.Result.Response.Length - 1,
             Message = "Test message 2"
@@ -86,6 +86,6 @@ public class AnnouncementRouteTests
 
         Assert.IsTrue(res2.Result.Response[res2.Result.Response.Length - 1].Message == "Test message 2");
 
-        cli.DelAnnouncement(res2.Result.Response.Length - 1);
+        cli.DeleteAnnouncement(res2.Result.Response.Length - 1);
     }
 }

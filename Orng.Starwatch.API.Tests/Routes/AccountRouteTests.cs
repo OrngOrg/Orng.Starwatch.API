@@ -12,8 +12,8 @@ public class AccountRouteTests
     public void PostTest()
     {
         var cli = RouteTestConfig.GetBotUserApiClient();
-        cli.DelAccountDetails("test_user");
-        var res = cli.PostAccount(new Account { IsActive = true, IsAdmin = false, Name = "test_user", Password = "test_pass" });
+        cli.DeleteAccount("test_user");
+        var res = cli.AddAccount(new Account { IsActive = true, IsAdmin = false, Name = "test_user", Password = "test_pass" });
         var resStr = JsonConvert.SerializeObject(res);
         Assert.IsTrue(res.Success == true, resStr);
         Assert.IsTrue(res.Result.Response.IsActive == true, resStr);

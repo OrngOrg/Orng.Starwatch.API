@@ -1,4 +1,6 @@
-﻿namespace Orng.Starwatch.API;
+﻿using Orng.Starwatch.API.Objects;
+
+namespace Orng.Starwatch.API;
 
 public partial class ApiClient
 {
@@ -6,4 +8,7 @@ public partial class ApiClient
     {
         public const string RoutePath = "api/server/statistics/listing";
     }
+
+    public ConversionResult<RestResponse<CompoundStatistic>> GetServerListing()
+    => GetRest<RestResponse<CompoundStatistic>>(ServerListingRoute.RoutePath);
 }

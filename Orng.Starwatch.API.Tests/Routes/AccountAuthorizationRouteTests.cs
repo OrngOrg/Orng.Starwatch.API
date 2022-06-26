@@ -10,7 +10,7 @@ public class AccountAuthorizationRouteTests
     public void GetTest ()
     {
         var cli = RouteTestConfig.GetBotUserApiClient();
-        var res = cli.PostAccountAuthorization("bot_example", "postman");
+        var res = cli.TestAccountCredentials("bot_example", "postman");
 
         Assert.IsTrue(res.Success, JsonConvert.SerializeObject(res));
     }

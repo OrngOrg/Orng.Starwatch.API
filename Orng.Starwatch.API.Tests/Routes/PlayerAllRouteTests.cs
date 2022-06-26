@@ -1,10 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json;
+using Orng.Starwatch.API.Objects;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Orng.Starwatch.API.Tests.Routes;
-internal class PlayerAllRouteTests
+
+[TestClass]
+public class PlayerAllRouteTests
 {
+    [TestMethod]
+    public void GetAllPlayersTest()
+    {
+        var cli = RouteTestConfig.GetBotUserApiClient();
+        var res = cli.GetAllPlayers();
+        System.Console.WriteLine(JsonConvert.SerializeObject(res));
+        Assert.IsTrue(res.Success);
+    }
 }

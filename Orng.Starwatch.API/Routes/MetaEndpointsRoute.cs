@@ -7,6 +7,6 @@ public partial class ApiClient
         public const string RoutePath = "api/meta/endpoints";
     }
 
-    public ConversionResult<RestResponse<string[]?>> GetEndpoints ()
-    =>  GetRestResponseSync<RestResponse<string[]?>>(MetaEndpointsRoute.RoutePath);
+    public ConversionResult<RestResponse<List<string>?>> GetRestEndpoints ()
+    =>  GetRest<RestResponse<List<string>?>> (MetaEndpointsRoute.RoutePath);
 }

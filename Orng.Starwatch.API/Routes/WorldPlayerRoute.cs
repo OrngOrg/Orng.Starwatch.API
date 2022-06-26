@@ -10,6 +10,6 @@ public partial class ApiClient
         => RoutePath.Replace(":identifier", identifier);
     }
 
-    public ConversionResult<RestResponse<Dictionary<int, string>?>> GetWorldPlayers (string identifier)
-    =>  GetRestResponseSync<RestResponse<Dictionary<int, string>?>> (WorldPlayerRoute.GetRoutePath(identifier));
+    public ConversionResult<RestResponse<Dictionary<int, string>?>> GetPlayersOnWorld (string identifier)
+    =>  GetRest<RestResponse<Dictionary<int, string>?>> (WorldPlayerRoute.GetRoutePath(identifier));
 }

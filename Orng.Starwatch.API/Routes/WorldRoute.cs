@@ -7,6 +7,6 @@ public partial class ApiClient
         public const string RoutePath = "api/world";
     }
 
-    public ConversionResult<RestResponse<string[]>> GetActiveWorlds()
-    =>  GetRestResponseSync<RestResponse<string[]>> (WorldRoute.RoutePath);
+    public ConversionResult<RestResponse<List<string>?>> GetActiveWorlds ()
+    =>  GetRest<RestResponse<List<string>?>> (WorldRoute.RoutePath);
 }

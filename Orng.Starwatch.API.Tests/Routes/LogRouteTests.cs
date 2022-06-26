@@ -1,10 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json;
+using Orng.Starwatch.API.Objects;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Orng.Starwatch.API.Tests.Routes;
-internal class LogRouteTests
+
+[TestClass]
+public class LogRouteTests
 {
+    [TestMethod]
+    public void DownloadLogTest()
+    {
+        var cli = RouteTestConfig.GetBotUserApiClient();
+        Assert.Inconclusive("requires file i/o");
+    }
 }

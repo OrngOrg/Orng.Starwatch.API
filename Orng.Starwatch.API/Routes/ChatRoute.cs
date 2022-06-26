@@ -20,6 +20,6 @@ public partial class ApiClient
         public ChatRoutePayload(string content) => Content = content;
     }
 
-    public ConversionResult<RestResponse<RconResponse?>> PostChat (string content, bool includeTag = false)
-    => PostRestResponseSync<RestResponse<RconResponse?>> (ChatRoute.GetRoutePath(includeTag), JsonConvert.SerializeObject(new ChatRoutePayload(content)));
+    public ConversionResult<RestResponse<RconResponse?>> SendChatMessage (string content, bool includeTag = false)
+    => PostRest<RestResponse<RconResponse?>> (ChatRoute.GetRoutePath(includeTag), new ChatRoutePayload(content));
 }

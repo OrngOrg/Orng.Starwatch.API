@@ -9,6 +9,6 @@ public partial class ApiClient
         public const string RoutePath = "api/meta/gateway";
     }
 
-    public ConversionResult<RestResponse<GatewayListing?>> GetGateway()
-    =>  GetRestResponseSync<RestResponse<GatewayListing?>> (MetaGatewayRoute.RoutePath);
+    public ConversionResult<RestResponse<GatewayListing?>> GetGateways()
+    =>  GetRest<RestResponse<GatewayListing?>> (MetaGatewayRoute.RoutePath);
 }

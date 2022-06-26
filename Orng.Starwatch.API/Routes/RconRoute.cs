@@ -15,6 +15,6 @@ public partial class ApiClient
         public string? Command { get; set; }
     }
 
-    public ConversionResult<RestResponse<RconResponse>> PostRcon(string command)
-    => PostRestResponseSync<RestResponse<RconResponse>> (RconRoute.RoutePath, JsonConvert.SerializeObject(new RconRoutePayload { Command = command }));
+    public ConversionResult<RestResponse<RconResponse?>> SendRconCommand (string command)
+    => PostRest<RestResponse<RconResponse?>> (RconRoute.RoutePath, new RconRoutePayload { Command = command });
 }

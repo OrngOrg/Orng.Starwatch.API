@@ -10,6 +10,6 @@ public partial class ApiClient
         public const string RoutePath = "api/ban";
     }
 
-    public ConversionResult<RestResponse<Ban?>> PostBan (Ban ban)
-    => PostRestResponseSync<RestResponse<Ban?>> (BanRoute.RoutePath, JsonConvert.SerializeObject(ban));
+    public ConversionResult<RestResponse<Ban?>> AddBan (Ban ban)
+    => PostRest<RestResponse<Ban?>> (BanRoute.RoutePath, ban);
 }

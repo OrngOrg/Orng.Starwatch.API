@@ -10,12 +10,12 @@ public partial class ApiClient
         public const string RoutePath = "api/account/{0}";
     }
 
-    public ConversionResult<RestResponse<Account?>> GetAccountDetails (string username)
-    =>  GetRestResponseSync<RestResponse<Account?>> (string.Format(AccountDetailsRoute.RoutePath, username));
+    public ConversionResult<RestResponse<Account?>> GetAccount (string username)
+    => GetRest<RestResponse<Account?>> (string.Format(AccountDetailsRoute.RoutePath, username));
 
-    public ConversionResult<RestResponse<bool?>> DelAccountDetails (string username)
-    =>  DelRestResponseSync<RestResponse<bool?>> (string.Format(AccountDetailsRoute.RoutePath, username));
+    public ConversionResult<RestResponse<bool?>> DeleteAccount (string username)
+    => DelRest<RestResponse<bool?>> (string.Format(AccountDetailsRoute.RoutePath, username));
 
-    public  ConversionResult<RestResponse<Account?>> PatchAccountDetails(string username, Account account)
-    =>   PutRestResponseSync<RestResponse<Account?>>(string.Format(AccountDetailsRoute.RoutePath, username), JsonConvert.SerializeObject(account));
+    public  ConversionResult<RestResponse<Account?>> UpdateAccount (string username, Account account)
+    => PutRest<RestResponse<Account?>> (string.Format(AccountDetailsRoute.RoutePath, username), account);
 }

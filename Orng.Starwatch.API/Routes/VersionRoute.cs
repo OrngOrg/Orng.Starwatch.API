@@ -7,6 +7,6 @@ public partial class ApiClient
         public const string RoutePath = "api/version";
     }
 
-    public ConversionResult<RestResponse<string?>> GetVersion ()
-    =>  GetRestResponseSync<RestResponse<string?>> (VersionRoute.RoutePath);
+    public ConversionResult<RestResponse<string?>> GetStarwatchVersion ()
+    =>  GetRest<RestResponse<string?>> (VersionRoute.RoutePath);
 }

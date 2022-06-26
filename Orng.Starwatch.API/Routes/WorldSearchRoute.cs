@@ -41,6 +41,6 @@ public partial class ApiClient
         }
     }
 
-    public ConversionResult<RestResponse<List<CelestialWorld>?>> GetWorld(long? xmin = null, long? xmax = null, long? ymin = null, long? ymax = null)
-    =>  GetRestResponseSync<RestResponse<List<CelestialWorld>?>> (WorldSearchRoute.GetRoutePath(xmin, xmax, ymin, ymax));
+    public ConversionResult<RestResponse<List<CelestialWorld>?>> GetWorld (long? xmin = null, long? xmax = null, long? ymin = null, long? ymax = null)
+    =>  GetRest<RestResponse<List<CelestialWorld>?>> (WorldSearchRoute.GetRoutePath(xmin, xmax, ymin, ymax));
 }

@@ -1,10 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json;
+using Orng.Starwatch.API.Objects;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Orng.Starwatch.API.Tests.Routes;
-internal class PlayerKickRouteTests
+
+[TestClass]
+public class PlayerKickRouteTests
 {
+    [TestMethod]
+    public void KickPlayersbyQueryTest() => Assert.Inconclusive("This route needs manual testing.");
 }
