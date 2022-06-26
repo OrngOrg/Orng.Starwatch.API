@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+
 namespace Orng.Starwatch.API;
 
 public partial class ApiClient
@@ -21,7 +22,10 @@ public partial class ApiClient
     public ConversionResult<RestResponse<bool?>> TestAccountCredentials (string username, string password)
     {
         string hash = BCrypt.Net.BCrypt.HashPassword(password, BCrypt.Net.BCrypt.GenerateSalt(), true);
-        string data = JsonConvert.SerializeObject(new AccountAuthorizationRoutePayload(hash));
-        return PostRestResponseSync<RestResponse<bool?>>(AccountAuthorizationRoute.GetRoutePath(username), data);
+        var payload = new AccountAuthorizationRoutePayload(hash);
+        return PostRest<RestResponse<bool?>>(AccountAuthorizationRoute.GetRoutePath(username), payload);
+        //return SendRestRequest<RestResponse<bool?>>(AccountAuthorizationRoute.GetRoutePath(username), payload, HttpMethod.Post);
     }
+
+    //private ConversionResult<T> SendRestRequest<T>(string v, AccountAuthorizationRoutePayload payload, HttpMethod post) => throw new NotImplementedException();
 }

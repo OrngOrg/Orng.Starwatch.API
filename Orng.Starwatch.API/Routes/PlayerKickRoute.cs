@@ -53,5 +53,5 @@ public partial class ApiClient
     }
 
     public ConversionResult<RestResponse<PlayerKickResponse?>> KickPlayersByQuery (Player player)
-    =>  DelRestResponseSync<RestResponse<PlayerKickResponse?>> (PlayerKickRoute.GetRoutePath(player));
+    =>  DelRest<RestResponse<PlayerKickResponse?>> (PlayerKickRoute.GetRoutePath(player));
 }

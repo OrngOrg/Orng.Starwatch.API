@@ -19,8 +19,8 @@ public partial class ApiClient
     }
 
     public ConversionResult<RestResponse<JObject?>> UpdateServerConfig (ServerRoutePayload payload)
-    =>  PutRestResponseSync<RestResponse<JObject?>> (ServerRoute.RoutePath, JsonConvert.SerializeObject(payload));
+    =>  PutRest<RestResponse<JObject?>> (ServerRoute.RoutePath, payload);
 
     public ConversionResult<EmptyRestResponse> RestartServer ()
-    =>  DelRestResponseSync<EmptyRestResponse> (ServerRoute.RoutePath);
+    =>  DelRest<EmptyRestResponse> (ServerRoute.RoutePath);
 }

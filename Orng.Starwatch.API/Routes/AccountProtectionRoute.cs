@@ -10,5 +10,5 @@ public partial class ApiClient
     }
 
     public ConversionResult<RestResponse<List<OptionalProtectedWorld>?>> GetAccountWorldWhitelists (string username)
-    =>  GetRestResponseSync<RestResponse<List<OptionalProtectedWorld>?>> (string.Format(AccountProtectionRoute.RoutePath, username));
+    => GetRest<RestResponse<List<OptionalProtectedWorld>?>> (string.Format(AccountProtectionRoute.RoutePath, username));
 }

@@ -11,17 +11,17 @@ public partial class ApiClient
     }
 
     public ConversionResult<RestResponse<Announcement[]?>> GetAnnouncements()
-    =>  GetRestResponseSync<RestResponse<Announcement[]?>> (AnnouncementRoute.RoutePath);
+    => GetRest<RestResponse<Announcement[]?>> (AnnouncementRoute.RoutePath);
 
     public ConversionResult<RestResponse<Announcement?>> GetAnnouncement(int i)
-    =>  GetRestResponseSync<RestResponse<Announcement?>> ($"{AnnouncementRoute.RoutePath}?id={i}");
+    => GetRest<RestResponse<Announcement?>> ($"{AnnouncementRoute.RoutePath}?id={i}");
 
     public ConversionResult<RestResponse<Announcement?>> DeleteAnnouncement(int i)
-    =>  DelRestResponseSync<RestResponse<Announcement?>> ($"{AnnouncementRoute.RoutePath}?id={i}");
+    => DelRest<RestResponse<Announcement?>> ($"{AnnouncementRoute.RoutePath}?id={i}");
 
     public ConversionResult<RestResponse<Announcement?>> UpdateAnnouncement(Announcement announcement) 
-    =>  PutRestResponseSync<RestResponse<Announcement?>> (AnnouncementRoute.RoutePath, JsonConvert.SerializeObject(announcement));
+    => PutRest<RestResponse<Announcement?>> (AnnouncementRoute.RoutePath, announcement);
 
     public ConversionResult<EmptyRestResponse> AddAnnouncement(Announcement announcement)
-    => PostRestResponseSync<EmptyRestResponse> (AnnouncementRoute.RoutePath, JsonConvert.SerializeObject(announcement));
+    => PostRest<EmptyRestResponse> (AnnouncementRoute.RoutePath, announcement);
 }

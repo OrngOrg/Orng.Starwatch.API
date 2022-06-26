@@ -11,5 +11,5 @@ public partial class ApiClient
     }
 
     public ConversionResult<RestResponse<Account?>> AddAccount (Account account)
-    => PostRestResponseSync<RestResponse<Account?>> (AccountRoute.RoutePath, JsonConvert.SerializeObject(account));
+    => PostRest<RestResponse<Account?>> (AccountRoute.RoutePath, account);
 }

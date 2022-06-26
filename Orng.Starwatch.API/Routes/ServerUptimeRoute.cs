@@ -10,5 +10,5 @@ public partial class ApiClient
     }
 
     public ConversionResult<RestResponse<List<Uptime>?>> GetServerUptime()
-    =>  GetRestResponseSync<RestResponse<List<Uptime>?>> (ServerUptimeRoute.RoutePath);
+    =>  GetRest<RestResponse<List<Uptime>?>> (ServerUptimeRoute.RoutePath);
 }

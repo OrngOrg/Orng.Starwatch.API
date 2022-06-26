@@ -28,35 +28,55 @@ public partial class ApiClient
         credentials = new NetworkCredential(username, password);
     }
 
-    private HttpResponseMessage? CallClient (Func<HttpClient, HttpResponseMessage?> func)
+    private HandledHttpResponse HttpRequest (HttpMethod method, string path, params object[] body)
     {
-        try
-        {
-            using (var handler = new HttpClientHandler() { Credentials = credentials })
-            {
-                using (var client = new HttpClient(handler))
-                {
-                    client.Timeout = new TimeSpan(0, 0, timeoutSeconds);
-                    var res = func(client);
+        if (body.Length > 1)
+            throw new ArgumentOutOfRangeException(nameof(body), "Only 0-1 body parameters are expected.");
 
-                    if (enableVerboseDebug)
-                        Console.WriteLine(JsonConvert.SerializeObject(res));
-
-                    return res;
-                }
-            }
-        }
-        catch (Exception ex)
+        using (var handler = new HttpClientHandler() { Credentials = credentials })
+        using (var client = new HttpClient(handler))
         {
-            if (enableVerboseDebug)
-                Console.WriteLine(ex.ToString());
-            
-            return null;
+            client.Timeout = new TimeSpan(0, 0, timeoutSeconds);
+            var req = new HttpRequestMessage(method, $"{baseUrl}/{path}");
+
+            if (body.Length == 1)
+                req.Content = new StringContent(JsonConvert.SerializeObject(body[0]), Encoding.UTF8, "application/json");
+
+            HttpResponseMessage? resp = null;
+            WebException? wex = null;
+            Exception? ex = null;
+
+            try                       { resp = client.Send(req); }
+            catch (WebException _wex) { wex  = _wex; }
+            catch (Exception _ex)     { ex   = _ex; }
+
+            return new HandledHttpResponse(resp, wex, ex);
         }
     }
 
-    private HttpResponseMessage? GetSync (string path)
-    => CallClient((c) => c.GetAsync($"{baseUrl}/{path}").Result);
+    private ConversionResult<T> RestRequest<T> (HttpMethod method, string path, params object[] body)
+    {
+        var resp = HttpRequest(method, path, body);
+
+        return resp.Success 
+            ? ConvertResponse<T>(resp.Response) 
+            : ConvertResponse<T>(null);
+    }
+
+    private ConversionResult<T> GetRest<T>(string path, params object[] body)
+    => RestRequest<T>(HttpMethod.Get, path, body);
+
+    private ConversionResult<T> PostRest<T>(string path, params object[] body)
+    => RestRequest<T>(HttpMethod.Post, path, body);
+
+    private ConversionResult<T> DelRest<T>(string path, params object[] body)
+    => RestRequest<T>(HttpMethod.Delete, path, body);
+
+    private ConversionResult<T> PutRest<T>(string path, params object[] body)
+    => RestRequest<T>(HttpMethod.Put, path, body);
+
+    private ConversionResult<T> PatchRest<T>(string path, params object[] body)
+    => RestRequest<T>(HttpMethod.Patch, path, body);
 
     /// <summary>
     /// Downloads a <paramref name="path"/> to a 
@@ -68,14 +88,14 @@ public partial class ApiClient
         if (File.Exists(output))
             File.Delete(output);
 
-        var resp = CallClient((c) => c.GetAsync($"{baseUrl}/{path}").Result);
+        var resp = HttpRequest(HttpMethod.Get, $"{path}");
 
-        if (resp is null)
+        if (resp is null || !resp.Success || resp.Response is null)
             return false;
 
         try
         {
-            Stream s = resp.Content.ReadAsStream();
+            Stream s = resp.Response.Content.ReadAsStream();
             FileStream fs = File.OpenWrite(output);
             int bytesRead = s.Read(buffer, 0, buffer.Length);
             
@@ -99,24 +119,6 @@ public partial class ApiClient
         }
     }
 
-    private HttpResponseMessage? DelSync(string path)
-    => CallClient((c) => c.DeleteAsync($"{baseUrl}/{path}").Result);
-
-    private HttpResponseMessage? PostSync(string path, string? body = null)
-    {
-        return body is not null
-            ? CallClient((c) => c.PostAsync($"{baseUrl}/{path}", new StringContent(body, Encoding.UTF8, "application/json")).Result)
-            : CallClient((c) => c.PostAsync($"{baseUrl}/{path}", null).Result);
-    }
-
-    private HttpResponseMessage? PatchSync(string path, string body)
-    => CallClient((c) => c.PatchAsync($"{baseUrl}/{path}", new StringContent(body, Encoding.UTF8, "application/json")).Result);
-
-    private HttpResponseMessage? PutSync(string path, string body)
-    => CallClient((c) => c.PutAsync($"{baseUrl}/{path}", new StringContent(body, Encoding.UTF8, "application/json")).Result);
-
-    
-
     private ConversionResult<T> ConvertResponse<T>(HttpResponseMessage? resp, Action<Exception>? failCallback = null)
     {
         if (resp is null)
@@ -137,20 +139,4 @@ public partial class ApiClient
             return new ConversionResult<T>(false, default, content, ex);
         }
     }
-
-    private ConversionResult<T> GetRestResponseSync<T>(string path)
-    => ConvertResponse<T>(GetSync(path));
-
-    private ConversionResult<T> DelRestResponseSync<T>(string path)
-    => ConvertResponse<T>(DelSync(path));
-
-    private ConversionResult<T> PostRestResponseSync<T>(string path, string? body = null)
-    => ConvertResponse<T>(PostSync(path, body));
-
-    // starwatch seems to error when this is used for an actual patch request.
-    private ConversionResult<T> PatchRestResponseSync<T>(string path, string body)
-    => ConvertResponse<T>(PatchSync(path, body));
-
-    private ConversionResult<T> PutRestResponseSync<T>(string path, string body)
-    => ConvertResponse<T>(PutSync(path, body));
 }

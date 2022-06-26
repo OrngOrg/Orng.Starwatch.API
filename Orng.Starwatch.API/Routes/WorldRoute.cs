@@ -8,5 +8,5 @@ public partial class ApiClient
     }
 
     public ConversionResult<RestResponse<List<string>?>> GetActiveWorlds ()
-    =>  GetRestResponseSync<RestResponse<List<string>?>> (WorldRoute.RoutePath);
+    =>  GetRest<RestResponse<List<string>?>> (WorldRoute.RoutePath);
 }

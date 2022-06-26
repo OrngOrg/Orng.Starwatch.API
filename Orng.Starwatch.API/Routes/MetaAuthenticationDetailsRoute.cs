@@ -13,5 +13,5 @@ public partial class ApiClient
     }
 
     public ConversionResult<RestResponse<MetaAuthenticationDetailsResponse?>> GetStarwatchSessionDetails (string accountName = "@me")
-    =>  GetRestResponseSync<RestResponse<MetaAuthenticationDetailsResponse?>> (MetaAuthenticationDetailsRoute.GetRoutePath(accountName));
+    =>  GetRest<RestResponse<MetaAuthenticationDetailsResponse?>> (MetaAuthenticationDetailsRoute.GetRoutePath(accountName));
 }

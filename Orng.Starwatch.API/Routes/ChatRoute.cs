@@ -21,5 +21,5 @@ public partial class ApiClient
     }
 
     public ConversionResult<RestResponse<RconResponse?>> SendChatMessage (string content, bool includeTag = false)
-    => PostRestResponseSync<RestResponse<RconResponse?>> (ChatRoute.GetRoutePath(includeTag), JsonConvert.SerializeObject(new ChatRoutePayload(content)));
+    => PostRest<RestResponse<RconResponse?>> (ChatRoute.GetRoutePath(includeTag), new ChatRoutePayload(content));
 }

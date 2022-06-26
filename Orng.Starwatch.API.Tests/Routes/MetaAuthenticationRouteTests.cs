@@ -15,6 +15,6 @@ public class MetaAuthenticationRouteTests
         var cli = RouteTestConfig.GetSuperuserApiClient();
         var res = cli.GetStarwatchSessions();
         System.Console.WriteLine(JsonConvert.SerializeObject(res));
-        Assert.IsTrue(res);
+        Assert.IsTrue(res.Success);
     }
 }

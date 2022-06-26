@@ -19,14 +19,14 @@ public partial class ApiClient
     }
 
     public ConversionResult<RestResponse<WorldRestore?>> GetWorldBackup (string whereami)
-    =>  GetRestResponseSync<RestResponse<WorldRestore?>> (WorldRestoreRoute.GetRoutePath(whereami));
+    =>  GetRest<RestResponse<WorldRestore?>> (WorldRestoreRoute.GetRoutePath(whereami));
 
     public ConversionResult<RestResponse<WorldRestore?>> CreateWorldBackup (string whereami)
-    => PostRestResponseSync<RestResponse<WorldRestore?>> (WorldRestoreRoute.GetRoutePath(whereami));
+    => PostRest<RestResponse<WorldRestore?>> (WorldRestoreRoute.GetRoutePath(whereami));
 
     public ConversionResult<RestResponse<bool?>> DeleteWorldBackup (string whereami)
-    =>  DelRestResponseSync<RestResponse<bool?>> (WorldRestoreRoute.GetRoutePath(whereami));
+    =>  DelRest<RestResponse<bool?>> (WorldRestoreRoute.GetRoutePath(whereami));
 
     public ConversionResult<RestResponse<WorldRestore?>> RestoreWorld (string whereami, string backupMirror)
-    =>  PutRestResponseSync<RestResponse<WorldRestore?>> (WorldRestoreRoute.GetRoutePath(whereami), JsonConvert.SerializeObject(new WorldRestorePatch { Mirror = backupMirror }));
+    =>  PutRest<RestResponse<WorldRestore?>> (WorldRestoreRoute.GetRoutePath(whereami), new WorldRestorePatch { Mirror = backupMirror });
 }
