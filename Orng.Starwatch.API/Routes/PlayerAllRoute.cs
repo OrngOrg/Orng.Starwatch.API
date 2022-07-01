@@ -10,5 +10,5 @@ public partial class ApiClient
     }
 
     public ConversionResult<RestResponse<List<Player>?>> GetAllPlayers()
-    =>  GetRest<RestResponse<List<Player>?>> (PlayerAllRoute.RoutePath);
+    => GetRest<RestResponse<List<Player>?>> (PlayerAllRoute.RoutePath);
 }

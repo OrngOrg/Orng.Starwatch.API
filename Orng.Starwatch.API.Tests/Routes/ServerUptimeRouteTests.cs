@@ -1,10 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json;
+using Orng.Starwatch.API.Objects;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Orng.Starwatch.API.Tests.Routes;
-internal class ServerUptimeRouteTests
+
+[TestClass]
+public class ServerUptimeRouteTests
 {
+    [TestMethod]
+    public void GetServerUptimeTest()
+    {
+        var cli = RouteTestConfig.GetBotUserApiClient();
+        var resp = cli.GetServerUptime();
+
+        System.Console.WriteLine(JsonConvert.SerializeObject(resp));
+        Assert.IsTrue(resp.Success);
+    }
 }

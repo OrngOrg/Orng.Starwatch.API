@@ -8,5 +8,5 @@ public partial class ApiClient
     }
 
     public ConversionResult<RestResponse<string?>> GetStarwatchVersion ()
-    =>  GetRest<RestResponse<string?>> (VersionRoute.RoutePath);
+    => GetRest<RestResponse<string?>> (VersionRoute.RoutePath);
 }

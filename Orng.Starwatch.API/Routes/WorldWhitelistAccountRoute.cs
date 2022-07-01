@@ -13,10 +13,10 @@ public partial class ApiClient
     }
 
     public ConversionResult<RestResponse<ListedAccount?>> CheckAccountWhitelistOnWorld (string identifier, string account)
-    =>  GetRest<RestResponse<ListedAccount?>> (WorldWhitelistAccountRoute.GetRoutePath(identifier, account));
+    => GetRest<RestResponse<ListedAccount?>> (WorldWhitelistAccountRoute.GetRoutePath(identifier, account));
 
     public ConversionResult<RestResponse<bool?>> RemoveAccountWhitelistOnWorld (string identifier, string account)
-    =>  DelRest<RestResponse<bool?>> (WorldWhitelistAccountRoute.GetRoutePath(identifier, account));
+    => DelRest<RestResponse<bool?>> (WorldWhitelistAccountRoute.GetRoutePath(identifier, account));
 
     public ConversionResult<RestResponse<ListedAccount?>> AddAccountWhitelistOnWorld (string identifier, string account)
     => PostRest<RestResponse<ListedAccount?>> (WorldWhitelistAccountRoute.GetRoutePath(identifier, account));

@@ -14,10 +14,10 @@ public partial class ApiClient
     }
 
     public ConversionResult<RestResponse<OptionalProtectedWorld?>> GetWorldWhitelist (string identifier)
-    =>  GetRest<RestResponse<OptionalProtectedWorld?>> (WorldWhitelistRoute.GetRoutePath(identifier));
+    => GetRest<RestResponse<OptionalProtectedWorld?>> (WorldWhitelistRoute.GetRoutePath(identifier));
 
     public ConversionResult<RestResponse<bool?>> DeleteWorldWhitelist (string identifier)
-    =>  DelRest<RestResponse<bool?>> (WorldWhitelistRoute.GetRoutePath(identifier));
+    => DelRest<RestResponse<bool?>> (WorldWhitelistRoute.GetRoutePath(identifier));
 
     public ConversionResult<RestResponse<OptionalProtectedWorld?>> AddWorldWhitelist (string identifier, OptionalProtectedWorld whitelist)
     => PostRest<RestResponse<OptionalProtectedWorld?>> (WorldWhitelistRoute.GetRoutePath(identifier), whitelist);

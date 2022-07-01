@@ -1,10 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json;
+using Orng.Starwatch.API.Objects;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Orng.Starwatch.API.Tests.Routes;
-internal class ServerRouteTests
+
+[TestClass]
+public class ServerRouteTests
 {
+    [TestMethod]
+    public void UpdateServerConfigTest()
+    {
+        var cli = RouteTestConfig.GetBotUserApiClient();
+
+        var resp = cli.UpdateServerConfig(new ApiClient.ServerRoutePayload
+        {
+           MaxPlayers = 60
+        });
+
+        Assert.IsTrue(resp.Success);
+    }
+
+    [TestMethod]
+    public void RestartServerTest()
+    {
+        var cli = RouteTestConfig.GetBotUserApiClient();
+        var resp = cli.RestartServer();
+
+        Assert.IsTrue(resp.Success);
+    }
 }

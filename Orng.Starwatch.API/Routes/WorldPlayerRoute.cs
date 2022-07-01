@@ -11,5 +11,5 @@ public partial class ApiClient
     }
 
     public ConversionResult<RestResponse<Dictionary<int, string>?>> GetPlayersOnWorld (string identifier)
-    =>  GetRest<RestResponse<Dictionary<int, string>?>> (WorldPlayerRoute.GetRoutePath(identifier));
+    => GetRest<RestResponse<Dictionary<int, string>?>> (WorldPlayerRoute.GetRoutePath(identifier));
 }

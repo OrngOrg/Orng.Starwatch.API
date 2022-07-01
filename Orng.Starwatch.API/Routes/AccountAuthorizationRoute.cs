@@ -24,8 +24,5 @@ public partial class ApiClient
         string hash = BCrypt.Net.BCrypt.HashPassword(password, BCrypt.Net.BCrypt.GenerateSalt(), true);
         var payload = new AccountAuthorizationRoutePayload(hash);
         return PostRest<RestResponse<bool?>>(AccountAuthorizationRoute.GetRoutePath(username), payload);
-        //return SendRestRequest<RestResponse<bool?>>(AccountAuthorizationRoute.GetRoutePath(username), payload, HttpMethod.Post);
     }
-
-    //private ConversionResult<T> SendRestRequest<T>(string v, AccountAuthorizationRoutePayload payload, HttpMethod post) => throw new NotImplementedException();
 }

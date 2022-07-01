@@ -13,5 +13,5 @@ public partial class ApiClient
     }
 
     public ConversionResult<RestResponse<List<CelestialWorld>?>> GetMapSystem (string system)
-    =>  GetRest<RestResponse<List<CelestialWorld>?>> (MapSystemRoute.GetRoutePath(system));
+    => GetRest<RestResponse<List<CelestialWorld>?>> (MapSystemRoute.GetRoutePath(system));
 }

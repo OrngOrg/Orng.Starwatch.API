@@ -8,5 +8,5 @@ public partial class ApiClient
     }
 
     public ConversionResult<RestResponse<List<string>?>> GetRestEndpoints ()
-    =>  GetRest<RestResponse<List<string>?>> (MetaEndpointsRoute.RoutePath);
+    => GetRest<RestResponse<List<string>?>> (MetaEndpointsRoute.RoutePath);
 }

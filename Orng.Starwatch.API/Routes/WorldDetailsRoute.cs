@@ -13,8 +13,8 @@ public partial class ApiClient
     }
 
     public ConversionResult<RestResponse<CelestialWorld?>> GetWorldDetails (string identifier)
-    =>  GetRest<RestResponse<CelestialWorld?>> (WorldDetailsRoute.GetRoutePath(identifier));
+    => GetRest<RestResponse<CelestialWorld?>> (WorldDetailsRoute.GetRoutePath(identifier));
 
     public ConversionResult<RestResponse<bool?>> DeleteWorldMetadata (string identifier)
-    =>  DelRest<RestResponse<bool?>> (WorldDetailsRoute.GetRoutePath(identifier));
+    => DelRest<RestResponse<bool?>> (WorldDetailsRoute.GetRoutePath(identifier));
 }

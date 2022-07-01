@@ -44,5 +44,5 @@ public partial class ApiClient
     }
 
     public ConversionResult<RestResponse<string?>> GetSessions (string? connection, string? username, string? account, string? ip, string? uuid)
-    =>  GetRest<RestResponse<string?>> (SessionRoute.GetRoutePath(connection, username, account, ip, uuid));
+    => GetRest<RestResponse<string?>> (SessionRoute.GetRoutePath(connection, username, account, ip, uuid));
 }

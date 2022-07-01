@@ -42,5 +42,5 @@ public partial class ApiClient
     }
 
     public ConversionResult<RestResponse<List<SystemWorld>?>> GetMap (long? xmin = null, long? xmax = null, long? ymin = null, long? ymax = null)
-    =>  GetRest<RestResponse<List<SystemWorld>?>> (MapRoute.GetRoutePath(xmin, xmax, ymin, ymax));
+    => GetRest<RestResponse<List<SystemWorld>?>> (MapRoute.GetRoutePath(xmin, xmax, ymin, ymax));
 }

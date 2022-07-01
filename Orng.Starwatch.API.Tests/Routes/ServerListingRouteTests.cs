@@ -10,11 +10,12 @@ namespace Orng.Starwatch.API.Tests.Routes;
 public class ServerListingRouteTests
 {
     [TestMethod]
-    public void SendRconCommandTest()
+    public void GetServerListingTest()
     {
         var cli = RouteTestConfig.GetBotUserApiClient();
         var resp = cli.GetServerListing();
 
+        System.Console.WriteLine(JsonConvert.SerializeObject(resp));
         Assert.IsTrue(resp.Success);
     }
 }

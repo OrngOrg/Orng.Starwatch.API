@@ -8,8 +8,8 @@ public partial class ApiClient
     }
 
     public ConversionResult<RestResponse<string[]?>> GetStarwatchSessions ()
-    =>  GetRest<RestResponse<string[]?>> (MetaAuthenticationRoute.RoutePath);
+    => GetRest<RestResponse<string[]?>> (MetaAuthenticationRoute.RoutePath);
 
     public ConversionResult<EmptyRestResponse> ClearStarwatchSessions ()
-    =>  DelRest<EmptyRestResponse> (MetaAuthenticationRoute.RoutePath);
+    => DelRest<EmptyRestResponse> (MetaAuthenticationRoute.RoutePath);
 }

@@ -10,5 +10,5 @@ public partial class ApiClient
     }
 
     public ConversionResult<RestResponse<GatewayListing?>> GetGateways()
-    =>  GetRest<RestResponse<GatewayListing?>> (MetaGatewayRoute.RoutePath);
+    => GetRest<RestResponse<GatewayListing?>> (MetaGatewayRoute.RoutePath);
 }

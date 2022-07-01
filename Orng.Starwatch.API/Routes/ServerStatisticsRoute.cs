@@ -10,5 +10,5 @@ public partial class ApiClient
     }
 
     public ConversionResult<RestResponse<Statistics?>> GetServerStatistics()
-    =>  GetRest<RestResponse<Statistics?>> (ServerStatisticsRoute.RoutePath);
+    => GetRest<RestResponse<Statistics?>> (ServerStatisticsRoute.RoutePath);
 }
